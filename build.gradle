@@ -18,8 +18,20 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+	testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.6.1'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+task customFatJar(type: Jar) {
+	manifest {
+		attributes 'Main-Class': 'dev.schulte.Project1.Project1Application'
+	}
+	baseName = 'Project1-App'
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
+	//command to run: gradlew task taksname
 }

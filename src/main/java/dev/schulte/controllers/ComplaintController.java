@@ -22,7 +22,7 @@ public class ComplaintController {
     }
 
     @GetMapping("/complaints")
-    public List<Complaint> getAllStudents(){
+    public List<Complaint> getAllComplaints(){
         List<Complaint> returnComplaints = this.complaintService.getAllComplaints();
         return returnComplaints;
     }
