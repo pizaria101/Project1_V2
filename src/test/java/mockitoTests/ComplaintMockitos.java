@@ -31,4 +31,28 @@ public class ComplaintMockitos {
             this.complaintService.reportComplaint(complaint);
         });
     }
+
+    @Test
+    public void get_complaint_by_id_mock(){
+        ComplaintRepo complaintTestRepo = Mockito.mock(ComplaintRepo.class);
+        Assertions.assertThrows(RuntimeException.class, () ->{
+            this.complaintService.getComplaintById(1);
+        });
+    }
+
+    @Test
+    public void update_complaint_status_mock(){
+        ComplaintRepo complaintTestRepo = Mockito.mock(ComplaintRepo.class);
+        Assertions.assertThrows(RuntimeException.class, () ->{
+            this.complaintService.updateComplaintStatus(1, Status.HIGH_PRIORITY);
+        });
+    }
+
+    @Test
+    public void add_complaint_to_meeting_mock(){
+        ComplaintRepo complaintTestRepo = Mockito.mock(ComplaintRepo.class);
+        Assertions.assertThrows(RuntimeException.class, () ->{
+            this.complaintService.addComplaintToMeeting(1, -1);
+        });
+    }
 }
