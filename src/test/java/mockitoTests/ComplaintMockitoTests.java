@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ComplaintMockitos {
+public class ComplaintMockitoTests {
 
     @Autowired
     ComplaintRepo complaintRepo;

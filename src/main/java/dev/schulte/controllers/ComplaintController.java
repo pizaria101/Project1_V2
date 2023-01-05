@@ -28,14 +28,14 @@ public class ComplaintController {
     }
 
     @GetMapping("/complaints/{id}")
-    public Complaint getComplaintById(@PathVariable String id){
+    public Complaint getComplaintById(@PathVariable("id") String id){
         int complaintId = Integer.parseInt(id);
         Complaint returnComplaint = this.complaintService.getComplaintById(complaintId);
         return returnComplaint;
     }
 
     @PutMapping("/complaints/{id}/{status}")
-    public Complaint updateComplaintStatus(@PathVariable String id, @PathVariable String status){
+    public Complaint updateComplaintStatus(@PathVariable("id") String id, @PathVariable("status") String status){
         int complaintId = Integer.parseInt(id);
         Complaint getComplaint = new Complaint();
         switch(status.toLowerCase()){
@@ -60,8 +60,8 @@ public class ComplaintController {
         return getComplaint;
     }
 
-    @PutMapping("/complaints/{id}/{meeting_id}")
-    public Complaint addComplaintToMeeting(@PathVariable String id, @PathVariable String meeting_id){
+    @PutMapping("/complaints/{id}/meeting/{meeting_id}")
+    public Complaint addComplaintToMeeting(@PathVariable("id") String id, @PathVariable("meeting_id") String meeting_id){
         int complaintId = Integer.parseInt(id);
         int meetingId = Integer.parseInt(meeting_id);
         return this.complaintService.addComplaintToMeeting(complaintId, meetingId);
