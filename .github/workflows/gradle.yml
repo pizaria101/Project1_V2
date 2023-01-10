@@ -30,7 +30,7 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - run: sudo chmod 777 /home/runner/work/Project1_V2/Project1/gradlew
+    - run: sudo chmod 777 /home/runner/work/Project1/Project1/gradlew
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
