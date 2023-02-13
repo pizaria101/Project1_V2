@@ -2,6 +2,9 @@ package dev.schulte.services;
 
 import dev.schulte.entities.AppUser;
 import dev.schulte.entities.Role;
+import dev.schulte.exceptions.PasswordLengthException;
+import dev.schulte.exceptions.UserNotFoundException;
+import dev.schulte.exceptions.UsernameLengthException;
 import dev.schulte.repos.AppUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +21,11 @@ public class AppUserServiceImpl implements AppUserService{
     public AppUser registerUser(AppUser appUser) {
 
         if(appUser.getUsername().length() < 3){
-            throw new RuntimeException("Username must be more than 3 characters");
+            throw new UsernameLengthException("Username must be more than 3 characters");
         }
 
         if(appUser.getPassword().length() < 5){
-            throw new RuntimeException("Password must be more than 5 characters");
+            throw new PasswordLengthException("Password must be more than 5 characters");
         }
 
         return this.appUserRepo.save(appUser);
@@ -40,7 +43,7 @@ public class AppUserServiceImpl implements AppUserService{
 
             return this.appUserRepo.save(appUser);
         }else{
-            throw new RuntimeException("User not found");
+            throw new UserNotFoundException("User not found");
         }
     }
 

@@ -2,6 +2,9 @@ package dev.schulte.services;
 
 import dev.schulte.entities.Complaint;
 import dev.schulte.entities.Status;
+import dev.schulte.exceptions.BlankDescriptionException;
+import dev.schulte.exceptions.ComplaintNotFoundException;
+import dev.schulte.exceptions.NoComplaintFoundException;
 import dev.schulte.repos.ComplaintRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +22,7 @@ public class ComplaintServiceImpl implements ComplaintService{
     public Complaint reportComplaint(Complaint complaint) {
 
         if(complaint.getComplaintDesc().length() == 0){
-            throw new RuntimeException("Description cannot be blank");
+            throw new BlankDescriptionException("Description cannot be blank");
         }
 
         return this.complaintRepo.save(complaint);
@@ -39,7 +42,7 @@ public class ComplaintServiceImpl implements ComplaintService{
         if(possibleComplaint.isPresent()){
             return possibleComplaint.get();
         }else{
-            throw new RuntimeException("No complaint found");
+            throw new NoComplaintFoundException("No complaint found");
         }
 
     }
@@ -56,7 +59,7 @@ public class ComplaintServiceImpl implements ComplaintService{
 
             return this.complaintRepo.save(complaint);
         }else{
-            throw new RuntimeException("Complaint not found");
+            throw new ComplaintNotFoundException("Complaint not found");
         }
 
     }
@@ -73,7 +76,7 @@ public class ComplaintServiceImpl implements ComplaintService{
 
             return this.complaintRepo.save(complaint);
         }else{
-            throw new RuntimeException("Complaint not found");
+            throw new ComplaintNotFoundException("Complaint not found");
         }
     }
 }
